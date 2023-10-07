@@ -5,7 +5,7 @@ on:
     branches:
       - main
     paths:
-      - '1.13.1+cu117-py3.10.11-ubuntu22.04/Dockerfile'
+      - '1.13.1-cu117-py3.10.11-ubuntu22.04/Dockerfile'
   workflow_dispatch:
 jobs:
   build:
@@ -14,7 +14,7 @@ jobs:
     strategy:
       matrix:
         dockerfile: 
-          - 1.13.1+cu117-py3.10.11-ubuntu22.04
+          - 1.13.1-cu117-py3.10.11-ubuntu22.04
     steps:
     - name: Checkout code
       uses: actions/checkout@v2
