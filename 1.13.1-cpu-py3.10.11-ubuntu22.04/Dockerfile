@@ -30,7 +30,7 @@ RUN wget https://www.python.org/ftp/python/${PYTHON_VERSION}/Python-${PYTHON_VER
     rm -rf /Python-${PYTHON_VERSION}.tgz /Python-${PYTHON_VERSION}
 
 RUN apt-get update && apt-get install --no-install-recommends -y python3-pip && \
-    ln -s /usr/bin/pip3 /usr/bin/pip && \
+    ln -sf /usr/bin/pip3 /usr/bin/pip && \
     pip install --no-cache-dir torch==${PYTORCH_VERSION}+cpu
 
 RUN apt-get autoremove -y && apt-get clean && rm -rf /var/lib/apt/lists/*
