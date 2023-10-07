@@ -1,10 +1,12 @@
-name: Build and Push Docker Images
+name: docker-build-cuda
 
 on:
   push:
     branches:
       - main
-
+    paths:
+      - '1.13.1+cu117-py3.10.11-ubuntu22.04/Dockerfile'
+  workflow_dispatch:
 jobs:
   build:
     name: Build Docker Image ${{ matrix.dockerfile }}
@@ -33,4 +35,4 @@ jobs:
         file: ./${{ matrix.dockerfile }}/Dockerfile
         platforms: linux/amd64
         push: true
-        tags: artrajz/pytorch-docker:${{ matrix.dockerfile }}
+        tags: artrajz/pytorch:${{ matrix.dockerfile }}
