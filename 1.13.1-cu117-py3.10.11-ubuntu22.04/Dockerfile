@@ -9,6 +9,7 @@ ENV LC_ALL C.UTF-8
 ENV PATH /usr/local/bin:$PATH
 
 RUN apt-get update && apt-get upgrade -y && \
+    apt-get install -y --no-install-recommends ca-certificates && \
     apt-get install --no-install-recommends -y \
     wget \
     build-essential \
