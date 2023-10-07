@@ -31,7 +31,7 @@ RUN wget https://www.python.org/ftp/python/${PYTHON_VERSION}/Python-${PYTHON_VER
 
 RUN apt-get update && apt-get install --no-install-recommends -y python3-pip && \
     ln -sf /usr/bin/pip3 /usr/bin/pip && \
-    pip install --no-cache-dir torch==${PYTORCH_VERSION}+cpu
+    pip install --no-cache-dir torch==${PYTORCH_VERSION}+cpu --extra-index-url https://download.pytorch.org/whl/cpu
 
 RUN apt-get autoremove -y && apt-get clean && rm -rf /var/lib/apt/lists/*
 
