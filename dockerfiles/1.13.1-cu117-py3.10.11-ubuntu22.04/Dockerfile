@@ -25,7 +25,7 @@ RUN wget https://www.python.org/ftp/python/${PYTHON_VERSION}/Python-${PYTHON_VER
     tar xzf Python-${PYTHON_VERSION}.tgz && \
     cd Python-${PYTHON_VERSION} && \
     ./configure --enable-optimizations && \
-    make altinstall && \
+    make -j$(nproc) altinstall && \
     PYTHON_MAJOR=$(echo $PYTHON_VERSION | cut -d'.' -f1) && \
     PYTHON_MINOR=$(echo $PYTHON_VERSION | cut -d'.' -f2) && \
     update-alternatives --install /usr/bin/python3 python3 /usr/local/bin/python${PYTHON_MAJOR}.${PYTHON_MINOR} 1 && \
