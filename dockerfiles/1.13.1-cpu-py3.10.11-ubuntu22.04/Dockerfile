@@ -32,8 +32,8 @@ RUN wget https://www.python.org/ftp/python/${PYTHON_VERSION}/Python-${PYTHON_VER
     rm -rf /Python-${PYTHON_VERSION}.tgz /Python-${PYTHON_VERSION}
 
 RUN python -m ensurepip && \
-    pip3 install --upgrade pip && \
-    ln -sf /usr/local/bin/pip3 /usr/bin/pip
+    python -m pip install --upgrade pip && \
+    ln -sf $(which pip) /usr/local/bin/pip3
 
 ENV CFLAGS="-I/usr/local/include/python${PYTHON_MAJOR}.${PYTHON_MINOR}/"
 
