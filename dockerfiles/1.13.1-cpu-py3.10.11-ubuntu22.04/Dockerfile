@@ -46,5 +46,3 @@ RUN apt-get update && apt-get install --no-install-recommends -y python3-pip && 
     pip install --no-cache-dir torch==${PYTORCH_VERSION}$PYTORCH_SUFFIX --extra-index-url https://download.pytorch.org/whl/cpu
 
 RUN apt-get autoremove -y && apt-get clean && rm -rf /var/lib/apt/lists/*
-
-CMD ["python", "--version"]
