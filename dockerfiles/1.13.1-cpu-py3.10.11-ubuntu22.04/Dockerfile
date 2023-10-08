@@ -18,7 +18,8 @@ RUN apt-get update && apt-get upgrade -y && \
     libsqlite3-dev \
     libexpat1-dev \
     liblzma-dev \
-    libffi-dev
+    libffi-dev \
+    libbz2-dev
 
 RUN wget https://www.python.org/ftp/python/${PYTHON_VERSION}/Python-${PYTHON_VERSION}.tgz && \
     tar xzf Python-${PYTHON_VERSION}.tgz && \
