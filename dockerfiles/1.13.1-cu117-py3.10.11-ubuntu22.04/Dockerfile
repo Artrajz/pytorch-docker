@@ -34,7 +34,8 @@ RUN wget https://www.python.org/ftp/python/${PYTHON_VERSION}/Python-${PYTHON_VER
 
 RUN python -m ensurepip && \
     python -m pip install --upgrade pip && \
-    ln -sf $(which pip) /usr/local/bin/pip3
+    ln -sf $(which pip) /usr/local/bin/pip3 && \
+    pip install wheel
 
 ENV CFLAGS="-I/usr/local/include/python${PYTHON_MAJOR}.${PYTHON_MINOR}/"
 
