@@ -31,11 +31,13 @@ RUN wget https://www.python.org/ftp/python/${PYTHON_VERSION}/Python-${PYTHON_VER
     update-alternatives --install /usr/bin/python python /usr/local/bin/python${PYTHON_MAJOR}.${PYTHON_MINOR} 1 && \
     rm -rf /Python-${PYTHON_VERSION}.tgz /Python-${PYTHON_VERSION}
 
+RUN python -m ensurepip && \
+    pip3 install --upgrade pip && \
+    ln -sf /usr/local/bin/pip3 /usr/bin/pip
+
 ENV CFLAGS="-I/usr/local/include/python${PYTHON_MAJOR}.${PYTHON_MINOR}/"
 
-RUN apt-get update && apt-get install --no-install-recommends -y python3-pip python3-dev && \
-    ln -sf /usr/bin/pip3 /usr/bin/pip && \
-    ARCH=$(uname -m) && \
+RUN ARCH=$(uname -m) && \
     if [ "$ARCH" = "x86_64" ]; then \
         PYTORCH_SUFFIX="+cpu"; \
     elif [ "$ARCH" = "aarch64" ]; then \
