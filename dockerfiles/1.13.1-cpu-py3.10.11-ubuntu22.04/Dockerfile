@@ -33,7 +33,7 @@ RUN wget https://www.python.org/ftp/python/${PYTHON_VERSION}/Python-${PYTHON_VER
 
 ENV CFLAGS="-I/usr/local/include/python${PYTHON_MAJOR}.${PYTHON_MINOR}/"
 
-RUN apt-get update && apt-get install --no-install-recommends -y python3-pip && \
+RUN apt-get update && apt-get install --no-install-recommends -y python3-pip python3-dev && \
     ln -sf /usr/bin/pip3 /usr/bin/pip && \
     ARCH=$(uname -m) && \
     if [ "$ARCH" = "x86_64" ]; then \
