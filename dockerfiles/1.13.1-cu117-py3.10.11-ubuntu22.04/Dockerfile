@@ -26,9 +26,13 @@ RUN wget https://www.python.org/ftp/python/${PYTHON_VERSION}/Python-${PYTHON_VER
     cd Python-${PYTHON_VERSION} && \
     ./configure --enable-optimizations && \
     make altinstall && \
-    update-alternatives --install /usr/bin/python3 python3 /usr/local/bin/python3.10 1 && \
-    update-alternatives --install /usr/bin/python python /usr/local/bin/python3.10 1 && \
+    PYTHON_MAJOR=$(echo $PYTHON_VERSION | cut -d'.' -f1) && \
+    PYTHON_MINOR=$(echo $PYTHON_VERSION | cut -d'.' -f2) && \
+    update-alternatives --install /usr/bin/python3 python3 /usr/local/bin/python${PYTHON_MAJOR}.${PYTHON_MINOR} 1 && \
+    update-alternatives --install /usr/bin/python python /usr/local/bin/python${PYTHON_MAJOR}.${PYTHON_MINOR} 1 && \
     rm -rf /Python-${PYTHON_VERSION}.tgz /Python-${PYTHON_VERSION}
+
+ENV CFLAGS="-I/usr/local/include/python${PYTHON_MAJOR}.${PYTHON_MINOR}/"
 
 RUN apt-get update && apt-get install --no-install-recommends -y python3-pip && \
     ln -sf /usr/bin/pip3 /usr/bin/pip && \

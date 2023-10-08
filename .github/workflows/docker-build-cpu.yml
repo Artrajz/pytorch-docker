@@ -5,7 +5,7 @@ on:
     branches:
       - main
     paths:
-      - '1.13.1-cpu-py3.10.11-ubuntu22.04/Dockerfile'
+      - 'dockerfiles/1.13.1-cpu-py3.10.11-ubuntu22.04/Dockerfile'
   workflow_dispatch:
 jobs:
   build:
@@ -13,7 +13,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        dockerfile: 
+        dockerfile:
           - 1.13.1-cpu-py3.10.11-ubuntu22.04
     steps:
     - name: Checkout code
@@ -32,7 +32,7 @@ jobs:
       uses: docker/build-push-action@v2
       with:
         context: .
-        file: ./${{ matrix.dockerfile }}/Dockerfile
+        file: ./dockerfiles/${{ matrix.dockerfile }}/Dockerfile
         platforms: linux/amd64,linux/arm64
         push: true
         tags: artrajz/pytorch:${{ matrix.dockerfile }}
