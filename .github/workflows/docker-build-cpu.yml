@@ -6,6 +6,7 @@ on:
       - main
     paths:
       - 'dockerfiles/1.13.1-cpu-py3.10.11-ubuntu22.04/Dockerfile'
+      - 'dockerfiles/2.2.0-cpu-py3.10.11-ubuntu22.04/Dockerfile'
   workflow_dispatch:
 jobs:
   build:
@@ -15,6 +16,7 @@ jobs:
       matrix:
         dockerfile:
           - 1.13.1-cpu-py3.10.11-ubuntu22.04
+          - 2.2.0-cpu-py3.10.11-ubuntu22.04
     steps:
     - name: Checkout code
       uses: actions/checkout@v2
